@@ -50,7 +50,7 @@ requirements_file, tests_requirements_file = {
     False: ('requirements.txt', 'social/tests/requirements.txt'),
     True: ('requirements-python3.txt', 'social/tests/requirements-python3.txt')
 }[PY3]
-
+print os.getcwd()
 with open(requirements_file, 'r') as f:
     requirements = f.readlines()
 
